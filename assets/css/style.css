@@ -1,0 +1,34 @@
+body {
+background: #B0C4DE;
+font-family:Courier;
+}
+
+#initial {
+	text-align:center;
+}
+
+
+#current-word {
+	text-align: center;
+	}
+
+#restart {
+	text-align: center;
+}
+
+.space-left {
+	text-align: center;
+}
+
+#restart {
+	margin-left:47%;
+}
+
+img {
+	position:relative;
+	top:0;
+	left:18%;
+	margin-top:2em;
+	width:70%;
+	height:auto;
+}

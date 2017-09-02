@@ -151,16 +151,16 @@ $(document).ready(function() {
 
 
 $("#restart").on("click", function() {
-           function populateStorage() {
-			  localStorage.setItem("wins", "wins");
-			  localStorage.setItem("losses", "losses");
-			
-           location.reload();
-           var wins = storage.getItem("wins");
-           var losses = storage.getItem("losses");
-       	}
-       	populateStorage();
-    });
+    function populateStorage() {
+        localStorage.setItem("wins", wins);
+        localStorage.setItem("losses", losses);
+
+        location.reload();
+        var wins = storage.getItem("wins");
+        var losses = storage.getItem("losses");
+    }
+    populateStorage();
+});
 
 
 
@@ -177,14 +177,3 @@ $("#restart").on("click", function() {
 
 
 // Psuedocode for rest of game ****
-
-
-// If user runs out of guesses (guesscount is less than 1, GAME OVER)
-// If game[i] === newArr {
-// 	alert("Congrats! want to try again?")
-// }
-
-
-// User will press any button to continue and the loop will switch to the next word.
-
-// Styling will happen after I figure out how to get the game to work properly.
