@@ -20,6 +20,10 @@ font-family:Courier;
 	text-align: center;
 }
 
+#incorrect-guesses {
+	text-align:center;
+}
+
 #restart {
 	margin-left:47%;
 }

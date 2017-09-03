@@ -16,7 +16,7 @@ $(document).ready(function() {
     var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "
     ];
-    var games = ["Spyro", "Pokemon", "Metroid", "BattleToads", "CrashBandicoot", "SuperMarioWorld", "DonkeyKongCountry"];
+    var games = ["Spyro", "Pokemon", "Metroid", "BattleToads", "Crash Bandicoot", "Super Mario World", "Donkey Kong Country"];
     var gameRandom = "";
 
     // the number of guesses a user has left, decrementing down to 0
@@ -156,6 +156,7 @@ $("#restart").on("click", function() {
         localStorage.setItem("losses", losses);
 
         location.reload();
+        score();
         var wins = storage.getItem("wins");
         var losses = storage.getItem("losses");
     }
@@ -173,7 +174,3 @@ $("#restart").on("click", function() {
 // }
 
 //     $('#restart').click(newGame);
-
-
-
-// Psuedocode for rest of game ****
