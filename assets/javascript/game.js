@@ -16,7 +16,7 @@ $(document).ready(function() {
     var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "
     ];
-    var games = ["Spyro", "Pokemon", "Metroid", "BattleToads", "Crash Bandicoot", "Super Mario World", "Donkey Kong Country"];
+    var games = ["Spyro", "Pokemon", "Metroid", "Battle Toads", "Crash Bandicoot", "Super Mario World", "Donkey Kong Country"];
     var gameRandom = "";
 
     // the number of guesses a user has left, decrementing down to 0
@@ -71,7 +71,50 @@ $(document).ready(function() {
         //Dynamically changes the losses counter.
         document.getElementById("losses").innerHTML = losses;
 
+
+
+
+
+
+
     }
+
+function restart() {
+        var games = ["Spyro", "Pokemon", "Metroid", "BattleToads", "Crash Bandicoot", "Super Mario World", "Donkey Kong Country"];
+        var gameRandom = "";
+        var spaces = 0;
+        gameRandom = games[Math.floor(Math.random() * games.length)];
+        startUp();
+        
+        //Breaks word into letters
+}
+
+
+$("#restart").on("click", function() {
+            $("#current-word").empty();
+            restart();
+            var guessCount = 10;
+            document.getElementById("guess-count").innerHTML = guessCount;
+            
+       
+             gameRandom = games[Math.floor(Math.random() * games.length)];
+
+        
+            wordLetters = gameRandom.split("");
+
+        
+            spaces = wordLetters.length;
+            for (var i = 0; i < spaces; i++) {
+                var correctArr = [];
+
+                correctArr.push("_ ");
+                document.getElementById("current-word").innerHTML = correctArr;
+                document.getElementById("current-word").innerHTML = correctArr.join("");
+
+            }
+        });
+
+
 
 
 
@@ -150,19 +193,21 @@ $(document).ready(function() {
 
 
 
-$("#restart").on("click", function() {
-    function populateStorage() {
-        localStorage.setItem("wins", wins);
-        localStorage.setItem("losses", losses);
 
-        location.reload();
-        score();
-        var wins = storage.getItem("wins");
-        var losses = storage.getItem("losses");
-    }
-    populateStorage();
-});
 
+
+
+// $(".letter-button").on("click", function() {
+//           console.log("Clicked");
+//           var fridgeMagnet = $("<div>");
+//           fridgeMagnet.attr("class", "letter fridge-color");
+//           fridgeMagnet.text($(this).attr("data-letter"));
+//           $("#display").append(fridgeMagnet);
+
+//           $("#clear").on("click", function() {
+//             ("#display").empty();
+//           })
+//         });
 
 
 
