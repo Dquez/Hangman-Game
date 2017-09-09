@@ -84,6 +84,7 @@ $(document).ready(function() {
         guessCount = 10;
         correctArr = [];
         correctCount = 0;
+        incorrectArr = [];
         $("#current-word").empty();
         gameRandom = games[Math.floor(Math.random() * games.length)];
         document.getElementById("classics").src="assets/images/game-img.jpg";
