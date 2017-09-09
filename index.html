@@ -11,17 +11,17 @@
 
 <body>
     <div id="container">
-        <p id="initial">Can you guess some of my childhood games? Don't forget, there are spaces and capital letters in the words!</p>
+        <p id="initial">Can you guess some of my childhood games? Don't forget, there are no spaces or capital letters in the words!</p>
         <div id="current-word"></div>
         
-        <p id="incorrect-guesses"></p>
+        <p>Incorrectly guessed letters: <span id = "incorrect-guesses"></span></p>
     
     <div id="user-guess"></div>
     <div class="space-left">Wins: <span id="wins"></span></div>
     <div class="space-left">Losses: <span id="losses"></span></div>
     <div class="space-left">Guesses left: <span id="guess-count"></span> </div>
     <button  class="space-left" id="restart">Restart</button>
-    <img src="http://cdn.wallpapersafari.com/5/41/HeExtV.jpg" alt="Wallpaper of videogame characters"/>
+    <img id ="classics" src="http://cdn.wallpapersafari.com/5/41/HeExtV.jpg" alt="Wallpaper of videogame characters"/>
     </div>
     
     <script src="assets/javascript/game.js" type="text/javascript">

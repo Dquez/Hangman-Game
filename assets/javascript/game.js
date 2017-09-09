@@ -13,16 +13,16 @@ $(document).ready(function() {
     // the array holding the correct guesses
     var correctArr = [];
     var wordLetters = [];
-    var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "
-    ];
-    var games = ["Spyro", "Pokemon", "Metroid", "Battle Toads", "Crash Bandicoot", "Super Mario World", "Donkey Kong Country"];
+    var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var games = ["spyro", "pokemon", "metroid", "battletoads", "crashbandicoot", "supermarioworld", "donkeykongcountry"];
     var gameRandom = "";
 
     // the number of guesses a user has left, decrementing down to 0
     var guessCount = 10;
     var correctCount = 0;
     var spaces = 0;
+    var alertWinLose = true;
+    var doubleGuessed = [];
 
 
 
@@ -33,6 +33,8 @@ $(document).ready(function() {
         //Computer randomly selects an item from the array
         gameRandom = games[Math.floor(Math.random() * games.length)];
 
+        console.log(gameRandom)
+
         //Breaks word into letters
         wordLetters = gameRandom.split("");
 
@@ -40,10 +42,10 @@ $(document).ready(function() {
         spaces = wordLetters.length;
 
         // function to be dynamically change after each guess
-        function incorrect() {
+        // function incorrect() {
 
-            incorrectGuesses.innerHTML = ("You've guessed" + incorrectArr + "... Use the other " + guessCount + " wisely...");
-        }
+        //     incorrectGuesses.innerHTML = ("You've guessed" + incorrectArr + "... Use the other " + guessCount + " wisely...");
+        // }
 
 
 
@@ -71,52 +73,99 @@ $(document).ready(function() {
         //Dynamically changes the losses counter.
         document.getElementById("losses").innerHTML = losses;
 
+    }
 
-
-
-
-
+    function restart() {
 
     }
 
-function restart() {
-        var games = ["Spyro", "Pokemon", "Metroid", "BattleToads", "Crash Bandicoot", "Super Mario World", "Donkey Kong Country"];
-        var gameRandom = "";
-        var spaces = 0;
+
+    $("#restart").on("click", function() {
+        guessCount = 10;
+        correctArr = [];
+        correctCount = 0;
+        $("#current-word").empty();
         gameRandom = games[Math.floor(Math.random() * games.length)];
+        document.getElementById("classics").src="assets/images/game-img.jpg";
         startUp();
-        
-        //Breaks word into letters
-}
 
 
-$("#restart").on("click", function() {
-            $("#current-word").empty();
-            restart();
-            var guessCount = 10;
-            document.getElementById("guess-count").innerHTML = guessCount;
-            
-       
-             gameRandom = games[Math.floor(Math.random() * games.length)];
-
-        
-            wordLetters = gameRandom.split("");
-
-        
-            spaces = wordLetters.length;
-            for (var i = 0; i < spaces; i++) {
-                var correctArr = [];
-
-                correctArr.push("_ ");
-                document.getElementById("current-word").innerHTML = correctArr;
-                document.getElementById("current-word").innerHTML = correctArr.join("");
-
-            }
-        });
+    });
 
 
+    // Code to adapt for Drawing hangman
+
+    //           // Animate man
+    //   var animate = function () {
+    //     var drawMe = lives ;
+    //     drawArray[drawMe]();
+    //   }
 
 
+    //    // Hangman
+    //   canvas =  function(){
+
+    //     myStickman = document.getElementById("stickman");
+    //     context = myStickman.getContext('2d');
+    //     context.beginPath();
+    //     context.strokeStyle = "#fff";
+    //     context.lineWidth = 2;
+    //   };
+
+    //     head = function(){
+    //       myStickman = document.getElementById("stickman");
+    //       context = myStickman.getContext('2d');
+    //       context.beginPath();
+    //       context.arc(60, 25, 10, 0, Math.PI*2, true);
+    //       context.stroke();
+    //     }
+
+    //   draw = function($pathFromx, $pathFromy, $pathTox, $pathToy) {
+
+    //     context.moveTo($pathFromx, $pathFromy);
+    //     context.lineTo($pathTox, $pathToy);
+    //     context.stroke(); 
+    // }
+
+    //    frame1 = function() {
+    //      draw (0, 150, 150, 150);
+    //    };
+
+    //    frame2 = function() {
+    //      draw (10, 0, 10, 600);
+    //    };
+
+    //    frame3 = function() {
+    //      draw (0, 5, 70, 5);
+    //    };
+
+    //    frame4 = function() {
+    //      draw (60, 5, 60, 15);
+    //    };
+
+    //    torso = function() {
+    //      draw (60, 36, 60, 70);
+    //    };
+
+    //    rightArm = function() {
+    //      draw (60, 46, 100, 50);
+    //    };
+
+    //    leftArm = function() {
+    //      draw (60, 46, 20, 50);
+    //    };
+
+    //    rightLeg = function() {
+    //      draw (60, 70, 100, 100);
+    //    };
+
+    //    leftLeg = function() {
+    //      draw (60, 70, 20, 100);
+    //    };
+
+    //    var drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
+
+    
 
 
     // Function to check what letter the user pressed and run in through the logic statements to determine if it matches a letter from the selected word
@@ -133,13 +182,21 @@ $("#restart").on("click", function() {
 
                     correctCount++;
                     correctArr[i] = userInput;
+
+
                     // reapplies the change everytime user's guess is correct
                     document.getElementById("current-word").innerHTML = correctArr.join("");
-
-
+                    if (correctArr.indexOf(userInput) > -1) {
+                        doubleGuessed.push(userInput);
+                    }
+                    // Figure out a way to not add to the correctCount when clicking the same letter.
                 }
-            }
 
+
+        }
+        }
+         else if (incorrectArr.indexOf(userInput) > -1) {
+            doubleGuessed.push(userInput);
         } else {
             incorrectArr.push(userInput);
             guessCount--;
@@ -147,6 +204,7 @@ $("#restart").on("click", function() {
             // reapplies the change everytime user's guess is incorrect
             document.getElementById("incorrect-guesses").innerHTML = incorrectArr;
             document.getElementById("guess-count").innerHTML = guessCount;
+
         }
     }
 
@@ -180,8 +238,6 @@ $("#restart").on("click", function() {
             // if User presses a key within the array, game functions will begin.
             if (userGuess === allLetters[i]) {
 
-                var spliceLetters = allLetters.splice(i, 1);
-
                 checkLetters(userGuess);
                 score();
 
@@ -189,33 +245,3 @@ $("#restart").on("click", function() {
         }
     }
 });
-
-
-
-
-
-
-
-
-// $(".letter-button").on("click", function() {
-//           console.log("Clicked");
-//           var fridgeMagnet = $("<div>");
-//           fridgeMagnet.attr("class", "letter fridge-color");
-//           fridgeMagnet.text($(this).attr("data-letter"));
-//           $("#display").append(fridgeMagnet);
-
-//           $("#clear").on("click", function() {
-//             ("#display").empty();
-//           })
-//         });
-
-
-
-// function newGame() {
-//     $("#win").text("");
-//     var games = new Array("Spyro", "Pokemon", "Metroid", "BattleToads", "CrashBandicoot", "SuperMarioWorld", "DonkeyKongCountry");
-//     var random = games[Math.floor(Math.random() * games.length)];
-//     startUp(games[random]);
-// }
-
-//     $('#restart').click(newGame);
