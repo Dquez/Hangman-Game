@@ -23,7 +23,7 @@ $(document).ready(function() {
     var spaces = 0;
     var alertWinLose = true;
     var doubleGuessed = [];
-
+    var lettersGuessed = [];
 
 
     // Function to begin the set up of the round
@@ -87,7 +87,7 @@ $(document).ready(function() {
         incorrectArr = [];
         $("#current-word").empty();
         gameRandom = games[Math.floor(Math.random() * games.length)];
-        document.getElementById("classics").src="assets/images/game-img.jpg";
+        document.getElementById("classics").src = "assets/images/game-img.jpg";
         startUp();
 
 
@@ -166,7 +166,7 @@ $(document).ready(function() {
 
     //    var drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
 
-    
+
 
 
     // Function to check what letter the user pressed and run in through the logic statements to determine if it matches a letter from the selected word
@@ -187,18 +187,19 @@ $(document).ready(function() {
 
                     // reapplies the change everytime user's guess is correct
                     document.getElementById("current-word").innerHTML = correctArr.join("");
-                    if (correctArr.indexOf(userInput) > -1) {
-                        doubleGuessed.push(userInput);
-                    }
+                    // if (correctArr.indexOf(userInput) > -1) {
+                    //     doubleGuessed.push(userInput);
+                    // }
                     // Figure out a way to not add to the correctCount when clicking the same letter.
                 }
 
 
-        }
-        }
-         else if (incorrectArr.indexOf(userInput) > -1) {
+            }
+        } 
+        /*else if (incorrectArr.indexOf(userInput) > -1) {
             doubleGuessed.push(userInput);
-        } else {
+        } */
+        else {
             incorrectArr.push(userInput);
             guessCount--;
 
@@ -234,6 +235,13 @@ $(document).ready(function() {
     document.onkeyup = function(event) {
 
         var userGuess = event.key;
+
+        if (lettersGuessed.indexOf(userGuess) !== -1) {
+            return;
+        }
+
+        lettersGuessed.push(userGuess)
+
         // loops through array of letters
         for (var i = 0; i < allLetters.length; i++) {
             // if User presses a key within the array, game functions will begin.
